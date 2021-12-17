@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+        function validate(){
+            var mail = document.getElementById('email').value; 
+            var pass = document.getElementById('password').value; 
+
+            var regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.(a-z)+)?$/
+            var regxp = /^(?=.*\d)(?=.*[@])(?=.*[A-Z])[a-zA-Z0-9@].{6,30}$/;
+
+            var regc = /^SmartServTest@123$/
+            if(regc.test(pass)){
+                location.replace("dashboard.html")
+            }
+            if(regx.test(mail) && regxp.test(pass)){
+                alert("Your email and password is valid")
+                return true; 
+            }
+            else if(regx.test(mail) && !regxp.test(pass)){
+                alert("Your email is valid. Password is invalid")
+                return false; 
+            }
+            else if(!regx.test(mail) && regxp.test(pass)){
+                alert("Your email is invalid. Password is valid")
+                return false;
+            }
+            else{
+                alert("Your email and password are invalid")
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <img src="logo.png">
+            <form class="login-form" name="form1" action="">
+             <div>
+                <input type="email" id="email" placeholder="Username">
+                <span></span>
+            </div>
+            <div>
+                <input type="password" id="password" placeholder="Password">
+                <span></span>
+            </div>
+            <button onclick="validate()" type="button">Login</button>
+            <p class="message"><a href="mailto:support@smartserv.io">Forgot your password?</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>
